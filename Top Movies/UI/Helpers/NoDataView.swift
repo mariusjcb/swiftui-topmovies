@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct NoDataView: View {
+    @Binding var criteria: String
+    
     var body: some View {
         VStack(alignment: .center) {
             Image("no_data")
@@ -19,12 +21,17 @@ struct NoDataView: View {
             Text("No Data Found")
                 .font(.title)
                 .fontWeight(.bold)
+                
+            Text("\(criteria) is missing")
+                .font(.body)
+                .fontWeight(.bold)
+                .foregroundColor(Color.gray)
         }
     }
 }
 
 struct NoDataView_Previews: PreviewProvider {
     static var previews: some View {
-        NoDataView()
+        NoDataView(criteria: .constant("demo"))
     }
 }

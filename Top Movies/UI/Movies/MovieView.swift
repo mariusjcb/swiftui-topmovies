@@ -11,7 +11,7 @@ import SwiftUI
 struct MovieView: View {
     var movie: Movie
     
-    @State private var isSheetPresented = false
+    @State var isSheetPresented = false
     
     var body: some View {
         GeometryReader { g in
@@ -28,6 +28,8 @@ struct MovieView: View {
         }.sheet(isPresented: $isSheetPresented, content: {
             MovieDetailsView(movie: self.movie)
         })
+        
+        //SwiftUI bug when Sheet is presented from List or ForEach
     }
 }
 

@@ -63,12 +63,12 @@ struct GenreListHeader: View {
             HStack {
                 Text(title + " (\(count))")
                     .font(.headline)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.primary)
                 Spacer()
                 
                 if count > 0 {
                     Image(systemName: "chevron.up.circle")
-                    .colorMultiply(Color.black)
+                    .colorMultiply(Color.primary)
                     .rotationEffect(.degrees(isCollapsed ? 180 : 0))
                     .animation(.spring(response: 0.55, dampingFraction: 0.45, blendDuration: 0))
                 }

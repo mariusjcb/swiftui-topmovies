@@ -10,13 +10,15 @@ import SwiftUI
 
 struct PopularMoviesHeaderView: View {
     var movies: [Movie]
-    private let width = min(UIScreen.main.bounds.width - 60, 600)
+    
+    @Binding var filterString: String
+    private let width = UIScreen.main.bounds.width - 60
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 if movies.count == 0 {
-                    NoDataView()
+                    NoDataView(criteria: $filterString)
                         .frame(width: width)
                 }
                 
@@ -35,7 +37,7 @@ struct PopularMoviesHeaderView: View {
 
 struct PopularMoviesHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        PopularMoviesHeaderView(movies: MockData.getPopularMovies())
+        PopularMoviesHeaderView(movies: MockData.getPopularMovies(), filterString: .constant("No Filter"))
             .previewLayout(.fixed(width: 500, height: 400))
     }
 }

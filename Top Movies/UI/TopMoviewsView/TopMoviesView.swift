@@ -20,12 +20,13 @@ struct TopMoviesView: View {
                     HeaderView(viewModel: viewModel)
                         .padding(.horizontal, 30)
                     
-                    ZStack(alignment: .topLeading) {
-                        PopularMoviesHeaderView(movies: viewModel.movies)
+                    ZStack(alignment: .bottomLeading) {
+                        PopularMoviesHeaderView(movies: viewModel.movies, filterString: $viewModel.searchFilter)
+                            .padding(.bottom, 80)
                         VStack {
                             Spacer()
                             GenresList(genres: viewModel.genres)
-                        }.padding(.top, 210)
+                        }
                     }.padding(.top, 15)
                 }.animation(.easeInOut)
                 

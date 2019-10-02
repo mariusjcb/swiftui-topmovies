@@ -13,11 +13,12 @@ struct MovieDetailsView: View {
     
     var body: some View {
         GeometryReader { g in
-            VStack(alignment: .leading) {
+            ScrollView(.vertical) {
                 ZStack(alignment: .bottomLeading) {
                     ImageViewContainer(imageUrl: self.movie.backdrop)
                         .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: g.size.width, maxHeight: 250)
+                        .frame(maxWidth: g.size.width)
+                        .frame(height: g.size.width*3/4)
                         .shadow(color: Color.red.opacity(0.15), radius: 20, y: 30)
                         .overlay(LinearGradient(gradient: Gradient(colors: [.clear, Color("rvs_gradient")]), startPoint: .top, endPoint: .bottom))
                         .clipped()
@@ -28,14 +29,15 @@ struct MovieDetailsView: View {
                         .padding(.top, 30)
                         .padding(.horizontal, 30)
                 }
-                    
+                
                 Text(self.movie.overview.isEmpty ? "No overview provided. Please try another movie" : self.movie.overview)
-                    .font(.title)
+                    .font(.body)
                     .padding(.top, 20)
                     .padding(.horizontal, 30)
-                
-                Spacer()
-            }
+                    .lineLimit(nil)
+                    .frame(idealHeight: g.size.height, maxHeight: .infinity, alignment: .topLeading)
+            }.frame(width: g.size.width)
+            .background(Color("rvs_gradient"))
         }
     }
 }

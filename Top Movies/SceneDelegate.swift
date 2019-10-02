@@ -16,10 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var subscription: AnyCancellable?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let conentViewModel = TopMoviesViewModel(genresService: GenresService(api: TMDBApi()),
-                                                 moviesService: MoviesService(api: TMDBApi()))
+        let conentViewModel = TopMoviesViewModel(genresService: GenresService(api: TMDBMockApi()),
+                                                 moviesService: MoviesService(api: TMDBMockApi()))
         let contentView = TopMoviesView(viewModel: conentViewModel)
 
+        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
